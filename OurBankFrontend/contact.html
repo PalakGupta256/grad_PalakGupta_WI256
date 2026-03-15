@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Bank - Contact Us</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // When the page loads, attach submit event handler
+    window.onload = function() {
+      const form = document.getElementById('contact-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // prevent actual submission
+
+        // Replace form with a thank-you message
+        const mainContent = document.querySelector('main.content');
+        mainContent.innerHTML = `
+          <h1>Thank You!</h1>
+          <p>We have received your request and will contact you soon.</p>
+        `;
+      });
+    };
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="netbanking.html">Netbanking</a>
+        <a href="contact.html" class="active" aria-current="page">Contact Us</a>
+      </nav>
+    </aside>
+
+    <header class="header">
+      <div class="bank-name">OUR BANK</div>
+      <div class="tagline">Banking at your Doorstep</div>
+    </header>
+
+    <main class="content" role="main">
+      <h1>Contact Us</h1>
+
+      <form id="contact-form" method="post" novalidate>
+        <label for="contact-name">Name</label>
+        <input type="text" id="contact-name" name="name" required />
+
+        <label for="contact-email">Email</label>
+        <input type="email" id="contact-email" name="email" required />
+
+        <label for="contact-message">Message</label>
+        <input type="text" id="contact-message" name="message" required />
+
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+
+    <footer class="footer">
+      <div><strong>www.ourbank.com</strong></div>
+      <div>@Copyright. All rights reserved.</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Bank - Services</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    // JS to handle alert on service click
+    function serviceClicked(serviceName) {
+      alert("You clicked on " + serviceName + " service.");
+    }
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html" class="active" aria-current="page">Services</a>
+        <a href="netbanking.html">Netbanking</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </aside>
+
+    <header class="header">
+      <div class="bank-name">OUR BANK</div>
+      <div class="tagline">Banking at your Doorstep</div>
+    </header>
+
+    <main class="content" role="main">
+        <h1>Our Services</h1>
+        <p>Click on any service to learn more:</p>
+        <ul>
+            <li><a href="#" class="clickable-link" onclick="serviceClicked('Account Opening'); return false;">Account Opening</a></li>
+            <li><a href="#" class="clickable-link" onclick="serviceClicked('Loan Application'); return false;">Loan Application</a></li>
+            <li><a href="#" class="clickable-link" onclick="serviceClicked('Credit Card Services'); return false;">Credit Card Services</a></li>
+            <li><a href="#" class="clickable-link" onclick="serviceClicked('Fixed Deposits'); return false;">Fixed Deposits</a></li>
+            <li><a href="#" class="clickable-link" onclick="serviceClicked('Online Transfers'); return false;">Online Transfers</a></li>
+        </ul>
+    </main>
+
+    <footer class="footer">
+      <div><strong>www.ourbank.com</strong></div>
+      <div>@Copyright. All rights reserved.</div>
+    </footer>
+  </div>
+</body>
+</html>

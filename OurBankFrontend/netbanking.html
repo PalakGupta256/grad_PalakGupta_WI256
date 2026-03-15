@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Bank - Netbanking</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    function toggleForms(showSignup) {
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+      const toggleText = document.getElementById('toggle-text');
+
+      if (showSignup) {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        toggleText.textContent = "Already have an account? Login here.";
+        toggleText.setAttribute('onclick', 'toggleForms(false)');
+      } else {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        toggleText.textContent = "New user? Sign up here.";
+        toggleText.setAttribute('onclick', 'toggleForms(true)');
+      }
+    }
+
+    // Show alert and prevent form submission
+    function handleSubmit(event, formType) {
+      event.preventDefault();
+      alert(`Thank you for your ${formType} submission.`);
+    }
+
+    window.onload = function() {
+      toggleForms(false);
+
+      // Attach submit handlers
+      document.getElementById('login-form').addEventListener('submit', function(e) {
+        handleSubmit(e, 'login');
+      });
+
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        handleSubmit(e, 'signup');
+      });
+    };
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="netbanking.html" class="active" aria-current="page">Netbanking</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </aside>
+
+    <header class="header">
+      <div class="bank-name">OUR BANK</div>
+      <div class="tagline">Banking at your Doorstep</div>
+    </header>
+
+    <main class="content" role="main">
+      <h1>Netbanking</h1>
+
+      <form id="login-form" style="display:none;">
+        <h2>Login</h2>
+        <label for="login-username">Username or Email</label>
+        <input type="text" id="login-username" name="username" required />
+
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" required />
+
+        <button type="submit">Login</button>
+      </form>
+
+      <form id="signup-form" style="display:none;">
+        <h2>Sign Up</h2>
+        <label for="signup-name">Full Name</label>
+        <input type="text" id="signup-name" name="fullname" required />
+
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" name="email" required />
+
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" name="password" required />
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <div>
+        <span id="toggle-text" class="toggle-link" onclick="toggleForms(true)">New user? Sign up here.</span>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div><strong>www.ourbank.com</strong></div>
+      <div>@Copyright. All rights reserved.</div>
+    </footer>
+  </div>
+</body>
+</html>
