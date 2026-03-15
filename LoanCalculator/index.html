@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Loan Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 6px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .emi-result {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            color: black;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>LOAN CALCULATOR</h2>
+
+        <label>Applicant Name</label>
+        <input type="text" id="applicant" placeholder="Enter Name">
+
+        <label>Loan Type</label>
+        <select id="loanType" onchange="setInterest()">
+            <option value="">-- Select Loan Type --</option>
+            <option value="Home">Home Loan</option>
+            <option value="Car">Car Loan</option>
+            <option value="Personal">Personal Loan</option>
+        </select>
+
+        <label>Interest Rate (%)</label>
+        <input type="text" id="interest" readonly placeholder="Rate of Interest">
+
+        <label>Loan Amount (₹)</label>
+        <input type="number" id="amount" placeholder="Enter Loan Amount">
+
+        <label>Duration (Years)</label>
+        <input type="number" id="years" placeholder="Enter Duration in Years">
+
+        <button onclick="calculateEMI()">CALCULATE EMI</button>
+
+        <div class="emi-result" id="emi"></div>
+    </div>
+
+    <script>
+        function setInterest() {
+            var type = document.getElementById("loanType").value;
+            var interestField = document.getElementById("interest");
+            if (type === "Home") interestField.value = 9;
+            else if (type === "Car") interestField.value = 12;
+            else if (type === "Personal") interestField.value = 15;
+            else interestField.value = "";
+        }
+
+        function calculateEMI() {
+            var name = document.getElementById("applicant").value.trim();
+            var type = document.getElementById("loanType").value;
+            var interestRate = parseFloat(document.getElementById("interest").value);
+            var P = parseFloat(document.getElementById("amount").value);
+            var years = parseFloat(document.getElementById("years").value);
+
+            if (name === "") { alert("Name is required."); return; }
+            if (name.length < 5) { alert("Name must be at least 5 characters long."); return; }
+            if (!/^[A-Za-z ]+$/.test(name)) { alert("Name should contain only letters and spaces."); return; }
+            if (!type) { alert("Please select a loan type."); return; }
+            if (!P || P <= 0) { alert("Please enter a valid loan amount."); return; }
+            if (!years || years <= 0 || !Number.isInteger(years)) { alert("Please enter a valid duration in years."); return; }
+
+            var minAmount = 0, maxYears = 0;
+            if (type === "Home") { minAmount = 500000; maxYears = 30; }
+            else if (type === "Car") { minAmount = 100000; maxYears = 7; }
+            else if (type === "Personal") { minAmount = 10000; maxYears = 5; }
+
+            if (P < minAmount) { alert("Minimum amount for " + type + " loan is ₹" + minAmount.toLocaleString('en-IN')); return; }
+            if (years > maxYears) { alert("Maximum duration for " + type + " loan is " + maxYears + " years"); return; }
+
+            var R = interestRate / 100 / 12;
+            var N = years * 12;
+            var EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+
+            document.getElementById("emi").innerHTML =
+                "Monthly EMI for " + name + " is ₹ " + EMI.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+    </script>
+
+</body>
+
+</html>
