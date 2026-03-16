@@ -1,0 +1,17 @@
+<h2>Edit Student</h2>
+<div>
+  <input placeholder="Reg No" [(ngModel)]="student.regNo" disabled>
+</div>
+<div>
+  <input placeholder="Roll No" [(ngModel)]="student.rollNo">
+</div>
+<div>
+  <input placeholder="Name" [(ngModel)]="student.name">
+</div>
+<div>
+  <input placeholder="Standard" [(ngModel)]="student.standard">
+</div>
+<div>
+  <input placeholder="School" [(ngModel)]="student.school">
+</div>
+<button (click)="updateStudent()">Update Student</button>
