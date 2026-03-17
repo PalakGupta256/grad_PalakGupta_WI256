@@ -1,0 +1,40 @@
+<div class="list-container">
+  <h2>Student List</h2>
+  
+  <ng-container *ngIf="students$ | async as studentsList; else loading">
+    <p class="stats-text">Total Students: <strong>{{studentsList.length}}</strong></p>
+
+    <table class="modern-table" *ngIf="studentsList.length > 0">
+      <thead>
+        <tr>
+          <th>RegNo</th>
+          <th>Name</th>
+          <th>Standard</th>
+          <th>School</th>
+          <th>Percentage</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of studentsList">
+          <td>{{s.regNo}}</td>
+          <td>{{s.name}}</td>
+          <td>{{s.standard}}</td>
+          <td>{{s.school}}</td>
+          <td>{{s.percentage}}%</td>
+          <td>
+            <button class="btn-delete" (click)="deleteStudent(s.regNo)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="studentsList.length === 0" class="empty-state">
+      No records found in the database.
+    </div>
+  </ng-container>
+
+  <ng-template #loading>
+    <div class="loader">Loading student records...</div>
+  </ng-template>
+</div>

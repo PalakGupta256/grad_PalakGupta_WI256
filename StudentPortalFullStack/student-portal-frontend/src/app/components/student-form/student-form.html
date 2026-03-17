@@ -1,0 +1,37 @@
+<div class="form-card">
+  <h3>Register New Student</h3>
+  <form (ngSubmit)="onSubmit()" #studentForm="ngForm" class="grid-form">
+    <div class="input-group">
+      <label>Registration No</label>
+      <input type="number" [(ngModel)]="student.regNo" name="regNo" required>
+    </div>
+    <div class="input-group">
+      <label>Roll No</label>
+      <input type="number" [(ngModel)]="student.rollNo" name="rollNo" required>
+    </div>
+    <div class="input-group full-width">
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="student.name" name="name" required>
+    </div>
+    <div class="input-group">
+      <label>Standard</label>
+      <input type="number" [(ngModel)]="student.standard" name="standard" required>
+    </div>
+    <div class="input-group">
+      <label>School</label>
+      <input type="text" [(ngModel)]="student.school" name="school" required>
+    </div>
+    <div class="input-group">
+      <label>Gender</label>
+      <select [(ngModel)]="student.gender" name="gender">
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label>Percentage</label>
+      <input type="number" [(ngModel)]="student.percentage" name="percentage" required>
+    </div>
+    <button type="submit" class="btn-submit" [disabled]="!studentForm.valid">Save Student</button>
+  </form>
+</div>

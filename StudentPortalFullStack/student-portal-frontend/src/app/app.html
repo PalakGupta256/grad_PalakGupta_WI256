@@ -1,0 +1,23 @@
+<div class="container">
+  <h1>🎓 Student Management System</h1>
+
+  <div class="tab-nav">
+    <button (click)="activeTab = 'list'" [class.active]="activeTab === 'list'">📋 View Students</button>
+    <button (click)="activeTab = 'add'" [class.active]="activeTab === 'add'">➕ Add New Student</button>
+    <button (click)="activeTab = 'reports'" [class.active]="activeTab === 'reports'">📊 Reports & Filters</button>
+  </div>
+
+  <div class="tab-content">
+    <div *ngIf="activeTab === 'list'">
+      <app-student-list></app-student-list>
+    </div>
+
+    <div *ngIf="activeTab === 'add'">
+      <app-student-form (studentAdded)="onStudentAdded()"></app-student-form>
+    </div>
+
+    <div *ngIf="activeTab === 'reports'">
+      <app-student-filters></app-student-filters>
+    </div>
+  </div>
+</div>

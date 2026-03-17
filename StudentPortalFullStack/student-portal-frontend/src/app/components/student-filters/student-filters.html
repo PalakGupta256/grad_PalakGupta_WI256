@@ -1,0 +1,52 @@
+<div class="filter-container">
+  <h2>Filters & Reports</h2>
+
+  <div class="card">
+    <h3>Filter by School</h3>
+    <input [(ngModel)]="schoolSearch" placeholder="Search school (e.g. KV)">
+    <button (click)="filterBySchool()">Search</button>
+    <ul *ngIf="filteredStudents.length > 0">
+      <li *ngFor="let s of filteredStudents">{{s.name}} - {{s.school}}</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>School Count</h3>
+    <input [(ngModel)]="schoolCountName" placeholder="School name for count">
+    <button (click)="getSchoolCount()">Get Count</button>
+    <p *ngIf="schoolCount !== null">Total Students: {{schoolCount}}</p>
+  </div>
+
+  <div class="card">
+    <h3>Standard Count</h3>
+    <input type="number" [(ngModel)]="stdCountNum" placeholder="Standard">
+    <button (click)="getStandardCount()">Get Count</button>
+    <p *ngIf="standardCount !== null">Total Students in Class: {{standardCount}}</p>
+  </div>
+
+  <div class="card">
+    <h3>Strength by Gender & Standard</h3>
+    <select [(ngModel)]="gender">
+      <option value="MALE">Male</option>
+      <option value="FEMALE">Female</option>
+    </select>
+    <input type="number" [(ngModel)]="standardNum" placeholder="Standard">
+    <button (click)="getStrength()">Get Strength</button>
+    <p *ngIf="strength !== null">{{strength}} students found.</p>
+  </div>
+
+  <div class="card">
+    <h3>Pass / Fail Result</h3>
+    <select [(ngModel)]="pass" (change)="getResults()">
+      <option [ngValue]="true">Pass</option>
+      <option [ngValue]="false">All Students</option>
+    </select>
+    <button (click)="getResults()">Get Result</button>
+    <table *ngIf="resultStudents.length > 0">
+        <tr *ngFor="let s of resultStudents">
+            <td>{{s.name}}</td>
+            <td>{{s.percentage}}%</td>
+        </tr>
+    </table>
+  </div>
+</div>
